@@ -1,118 +1,3 @@
-/*
-let students = [
-    {
-    'code': 101,
-    'name': 'Ieva',
-    'lname': 'ievaite',
-    'subjects': [
-        'PHP',
-        'JS',
-        'C++'
-        ]
-    },
-    {
-        'code': 103,
-        'name': 'Giedre',
-        'lname': 'ite',
-        'subjects': [
-            'PHP',
-            'JS',
-            'C++'
-        ]
-    },
-    {
-        'code': 107,
-        'name': 'Jonas',
-        'lname': 'etis',
-        'subjects': [
-            'PHP',
-            'JS',
-            'C++'
-        ]
-    },
-    {
-        'code': 109,
-        'name': 'Tomas',
-        'lname': 'bytas',
-        'subjects': [
-            'PHP',
-            'JS',
-            'C++'
-        ]
-    }
-
-]
-
-
-for(let student of students) {
-    for (let studentData in student) {
-        if (studentData !== 'subjects') {
-            console.log(studentData + ": " + student[studentData])
-        } else {
-            let counter = 0;
-            console.log("Dalykai:")
-            for(let subject of student[studentData]){
-                console.log(subject)
-                counter++;
-            }
-            console.log("Kiek dalyku: " + counter)
-
-        }
-    }
-
-    console.log("//----------------------------------//")
-}
-*/
-
-
-
-//alert("veikia");
-
-/*let name = "Vytautas";
-console.log(typeof(name));
-let count = 10;
-console.log(typeof(count));
-let sum = 10.12;
-console.log(typeof(sum));
-let online = false;
-console.log(typeof(online));
-let student = {
-    age:19,
-    name: "Karolis",
-    subject: "JS"
-}
-console.log(typeof(student));
-let data = [10, "Martynas", false];
-console.log(data);
-console.log(data.length);*/
-/*let data = ["vytaytas", "vycka", "yolo"];
-for(let item in data){              // priskiria indeksa
-    console.log(data[item])
-}
-for(let item of data){          //priskiria reiksme
-    console.log(item)
-}
-data.push("Monika")
-console.log(data);
-let name = prompt("Iveskite varda");
-data.push(name);
-console.log(data)*/
-
-/*
-let how_many = prompt("Ivesti kiek sveciu");
-let guests = []
-let black_list = prompt("Unwanted guest");
-let how_many_wanted = how_many;
-for(let i = 0; i < how_many; i++){
-    let guest = prompt("Svecio vardas");
-        if (guest !== black_list) {
-            guests.push(guest);
-        }
-            else how_many_wanted--;
-}
-for(let i = 0; i < how_many_wanted; i++){
-    console.log(guests[i]);
-}*/
 let catalog = [
     {
         'Fantastine':[
@@ -215,39 +100,26 @@ for(let theme of catalog){
     for(let data in theme){
         console.log(data)
         console.log("Kategorijoje yra " + theme[data].length + " knygos")
-        let cheap1 = 0;
-        let cheap2 = 0;
+        let cheap1 = [];
+        let cheapest
         for(let book of theme[data]){
             for(let info in book) {
-                if(cheap1 > book[info] && info === 'price'){cheap1 = book[info]}
+                cheap1.push(book['price'])
                 if (info === 'Leidimo metai' && book[info] === 2021) {
                     console.log(info + ": " + book[info] + " (nauja knyga)")
                 } else {
                     console.log(info + ": " + book[info])
                 }
+                
             }
             console.log("-----------------")
         }
-        console.log("Pigiausia: " + cheap1)
+        
+        for(let i = 0; i < cheap1.length-1; i++){
+            if(cheap1[i] < cheap1[i+1]) {cheapest = cheap1[i]}
+        }
+        console.log("Pigiausia knyga kainuoja" + cheapest)
     console.log("//----------------------------------------//")
     }
 
 }
-/*for(let student of students) {
-    for (let studentData in student) {
-        if (studentData !== 'subjects') {
-            console.log(studentData + ": " + student[studentData])
-        } else {
-            let counter = 0;
-            console.log("Dalykai:")
-            for(let subject of student[studentData]){
-                console.log(subject)
-                counter++;
-            }
-            console.log("Kiek dalyku: " + counter)
-
-        }
-    }
-
-    console.log("//----------------------------------//")
-}*/
