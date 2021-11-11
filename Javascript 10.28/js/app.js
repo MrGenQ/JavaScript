@@ -96,30 +96,57 @@ let catalog = [
         ]
     },
 ]
+
+let goodBooks = []          //geru knygu masyvas
 for(let theme of catalog){
     for(let data in theme){
         console.log(data)
         console.log("Kategorijoje yra " + theme[data].length + " knygos")
-        let cheap1 = [];
-        let cheapest
+        theme[data].sort(function(a, b) {
+            var pavA = a.Pavadinimas.toUpperCase(); // ignore upper and lowercase
+            var pavB = b.Pavadinimas.toUpperCase(); // ignore upper and lowercase
+            if (pavA < pavB) {
+              return -1;
+            }
+            if (pavA > pavB) {
+              return 1;
+            }
+          
+            // names must be equal
+            return 0;
+          });
         for(let book of theme[data]){
             for(let info in book) {
-                cheap1.push(book['price'])
+                let price1 = []
+                if(info === 'price') {              // funkcija kainos pakėlimui
+                    price1.push(book[info])
+                    const map1 = price1.map(x => x * 1.15);
+                    book[info] = map1
+                }
+                if(info === 'Pavadinimas'){
+                    goodBooks.push(book[info])
+                }
                 if (info === 'Leidimo metai' && book[info] === 2021) {
                     console.log(info + ": " + book[info] + " (nauja knyga)")
                 } else {
                     console.log(info + ": " + book[info])
                 }
+
                 
             }
             console.log("-----------------")
         }
-        
-        for(let i = 0; i < cheap1.length-1; i++){
-            if(cheap1[i] < cheap1[i+1]) {cheapest = cheap1[i]}
-        }
-        console.log("Pigiausia knyga kainuoja" + cheapest)
     console.log("//----------------------------------------//")
     }
 
 }
+
+
+const result = goodBooks.filter(goodBooks => goodBooks.length > 20);            // funkcija, surasti knygas ilgesnes nei 20 simboliu
+console.log('Tinkamos knygos:')
+for(let good of result)
+{
+    console.log(good)
+}
+
+    
