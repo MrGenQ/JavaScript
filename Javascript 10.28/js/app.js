@@ -102,7 +102,8 @@ for(let theme of catalog){
     for(let data in theme){
         console.log(data)
         console.log("Kategorijoje yra " + theme[data].length + " knygos")
-        theme[data].sort(function(a, b) {
+        //-----Sort function----//
+            theme[data].sort(function(a, b) {
             let pavA = a.Pavadinimas.toUpperCase(); // ignore upper and lowercase
             let pavB = b.Pavadinimas.toUpperCase(); // ignore upper and lowercase
             if (pavA < pavB) {
@@ -123,6 +124,7 @@ for(let theme of catalog){
                     const map1 = price1.map(x => x * 1.15);
                     book[info] = map1
                 }
+                //----finding good books---//
                 if(info === 'Pavadinimas'){
                     goodBooks.push(book[info])
                 }
@@ -140,8 +142,6 @@ for(let theme of catalog){
     }
 
 }
-
-
 const result = goodBooks.filter(goodBooks => goodBooks.length > 20);            // funkcija, surasti knygas ilgesnes nei 20 simboliu
 console.log('Tinkamos knygos:')
 for(let good of result)
