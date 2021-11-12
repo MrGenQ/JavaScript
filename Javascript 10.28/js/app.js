@@ -103,8 +103,8 @@ for(let theme of catalog){
         console.log(data)
         console.log("Kategorijoje yra " + theme[data].length + " knygos")
         theme[data].sort(function(a, b) {
-            var pavA = a.Pavadinimas.toUpperCase(); // ignore upper and lowercase
-            var pavB = b.Pavadinimas.toUpperCase(); // ignore upper and lowercase
+            let pavA = a.Pavadinimas.toUpperCase(); // ignore upper and lowercase
+            let pavB = b.Pavadinimas.toUpperCase(); // ignore upper and lowercase
             if (pavA < pavB) {
               return -1;
             }
