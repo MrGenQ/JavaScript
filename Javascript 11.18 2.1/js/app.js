@@ -4,6 +4,7 @@ let add = function(){
     if (ok === true) {
         for(let i = 0; i < 12; i++) {
             let img = document.createElement("img");
+            img.className = 'div' + i;
             img.setAttribute("src","img/"+i+".jpeg");
             img.setAttribute("height", "200");
             img.setAttribute("width", "300");
@@ -36,17 +37,19 @@ let mixing = function(){
         d.removeChild(d_nested);
     }
     for(let i = 0; i < 12; i++) {
-        let div = document.createElement('div');
 
         let img = document.createElement("img");
+        img.className = 'div' + i;
         img.setAttribute("src",images[i]);
         img.setAttribute("height", "200");
         img.setAttribute("width", "300");
         document.querySelector("ul").appendChild(img);
-        images.push(["img/"+i+".jpeg"])
+        let elem = document.querySelector('ul img:last-child');
+        elem.addEventListener('dblclick', function (e) {
+            elem.setAttribute('src', 'img/default.jpeg')
+        });
     }
+    
+    
 }
 document.querySelector('.mix input').addEventListener('click', mixing);
-
-
-console.log(document.querySelector("img"))
