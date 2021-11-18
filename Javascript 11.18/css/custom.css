@@ -1,0 +1,14 @@
+* {
+    text-align: center;
+    margin: 0 auto;
+}
+div{
+    width: 200px;
+    height: 200px;
+}
+section{
+    width: 80%;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
