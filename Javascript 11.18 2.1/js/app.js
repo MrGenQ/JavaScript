@@ -10,6 +10,7 @@ let add = function(){
             img.setAttribute("width", "300");
             document.querySelector("ul").appendChild(img);
             images.push(["img/"+i+".jpeg"])
+            dbl()
         }
     }
     ok = false;
@@ -44,12 +45,16 @@ let mixing = function(){
         img.setAttribute("height", "200");
         img.setAttribute("width", "300");
         document.querySelector("ul").appendChild(img);
-        let elem = document.querySelector('ul img:last-child');
-        elem.addEventListener('dblclick', function (e) {
-            elem.setAttribute('src', 'img/default.jpeg')
-        });
+        dbl()
     }
     
     
 }
 document.querySelector('.mix input').addEventListener('click', mixing);
+
+function dbl(){
+    let elem = document.querySelector('ul img:last-child');
+    elem.addEventListener('dblclick', function (e) {
+        elem.setAttribute('src', 'img/default.jpeg')
+    });
+}
