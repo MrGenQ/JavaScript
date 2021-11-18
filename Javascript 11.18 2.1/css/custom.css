@@ -1,0 +1,11 @@
+*{
+    text-align: center;
+    margin: 0 auto;
+    padding: 1%;
+}
+input{
+    width: 100px;
+    height: 60px;
+    background-color: #7ca6dc;
+    color: #ffffff;
+}
