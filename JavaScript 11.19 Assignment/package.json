@@ -1,7 +1,6 @@
 {
   "name": "javascript-11.19-2.1",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -18,6 +17,8 @@
   "dependencies": {
     "bootstrap": "^4.6.0",
     "jquery": "^3.6.0",
+    "node.js": "0.0.1-security",
     "popper.js": "^1.16.1"
-  }
+  },
+  "description": ""
 }

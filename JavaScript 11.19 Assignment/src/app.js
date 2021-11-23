@@ -1,5 +1,10 @@
 import list from "./list"
-import data from "./data"
+import demoStorage from "./demoStorage";
+import students from "./students";
+import myWishList from "./myWishList";
 list()
+myWishList()
+
+demoStorage(students)
 require('bootstrap')
 

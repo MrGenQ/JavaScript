@@ -10,10 +10,16 @@
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _list__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./list */ "./src/list.js");
-/* harmony import */ var _data__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./data */ "./src/data.js");
+/* harmony import */ var _demoStorage__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./demoStorage */ "./src/demoStorage.js");
+/* harmony import */ var _students__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./students */ "./src/students.js");
+/* harmony import */ var _myWishList__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./myWishList */ "./src/myWishList.js");
+
+
 
 
 (0,_list__WEBPACK_IMPORTED_MODULE_0__["default"])();
+(0,_myWishList__WEBPACK_IMPORTED_MODULE_3__["default"])();
+(0,_demoStorage__WEBPACK_IMPORTED_MODULE_1__["default"])(_students__WEBPACK_IMPORTED_MODULE_2__["default"]);
 
 __webpack_require__(/*! bootstrap */ "./node_modules/bootstrap/dist/js/bootstrap.js");
 
@@ -36,25 +42,25 @@ var data = [{
     'Leidimo metai': 2020,
     'Pavadinimas': "Marsas Atakuoja",
     'Puslapiu skaicius': 350,
-    'price': 50
+    'Kaina': 50
   }, {
     'ISBN': 'FA5736J',
     'Leidimo metai': 2021,
     'Pavadinimas': "Voveriukas",
     'Puslapiu skaicius': 220,
-    'price': 40
+    'Kaina': 40
   }, {
     'ISBN': 'FA5136K',
     'Leidimo metai': 2021,
     'Pavadinimas': "Interstellar",
     'Puslapiu Skaicius': 700,
-    'price': 35
+    'Kaina': 35
   }, {
     'ISBN': 'FA5478K',
     'Leidimo metai': 2000,
     'Pavadinimas': "Jonukas ir Peliukas",
     'Puslapiu Skaicius': 130,
-    'price': 70.99
+    'Kaina': 70.99
   }]
 }, {
   'Grozine': [{
@@ -62,31 +68,31 @@ var data = [{
     'Leidimo metai': 2020,
     'Pavadinimas': "Marksas",
     'Puslapiu skaicius': 350,
-    'price': 25
+    'Kaina': 25
   }, {
     'ISBN': 'GR57FSJ',
     'Leidimo metai': 2015,
     'Pavadinimas': "Pienes pienese",
     'Puslapiu skaicius': 333,
-    'price': 79
+    'Kaina': 79
   }, {
     'ISBN': 'GR554UY',
     'Leidimo metai': 2014,
     'Pavadinimas': "Pienes Paulius",
     'Puslapiu skaicius': 311,
-    'price': 59.55
+    'Kaina': 59.55
   }, {
     'ISBN': 'GR51FFK',
     'Leidimo metai': 2016,
     'Pavadinimas': "Jonas Jono Jone",
     'Puslapiu Skaicius': 405,
-    'price': 6.99
+    'Kaina': 6.99
   }, {
     'ISBN': 'GR51GGK',
     'Leidimo metai': 1999,
     'Pavadinimas': "Kepti kotletus rugiuose",
     'Puslapiu Skaicius': 110,
-    'price': 19.99
+    'Kaina': 19.99
   }]
 }, {
   'Poemos': [{
@@ -94,28 +100,52 @@ var data = [{
     'Leidimo metai': 1896,
     'Pavadinimas': "Faustas",
     'Puslapiu skaicius': 99,
-    'price': 50
+    'Kaina': 50
   }, {
     'ISBN': 'PO5KO6J',
     'Leidimo metai': 2011,
     'Pavadinimas': "Graikijos psalme",
     'Puslapiu skaicius': 223,
-    'price': 50.99
+    'Kaina': 50.99
   }, {
     'ISBN': 'FATR36K',
     'Leidimo metai': 2005,
     'Pavadinimas': "Heraklis pries pasauli",
     'Puslapiu Skaicius': 150,
-    'price': 9.99
+    'Kaina': 9.99
   }, {
     'ISBN': 'FA5777K',
     'Leidimo metai': 2019,
     'Pavadinimas': "Rukas",
     'Puslapiu Skaicius': 199,
-    'price': 15.99
+    'Kaina': 15.99
   }]
 }];
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (data);
+
+/***/ }),
+
+/***/ "./src/demoStorage.js":
+/*!****************************!*\
+  !*** ./src/demoStorage.js ***!
+  \****************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+var demoStorage = function demoStorage(data) {
+  //const name = "Giedrė";
+  localStorage.setItem('students', JSON.stringify(data)); //localStorage.removeItem('savedName')
+  //console.log(localStorage.getItem('savedName'))
+
+  var students = JSON.parse(localStorage.getItem('students'));
+  console.log(students);
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (demoStorage);
 
 /***/ }),
 
@@ -154,24 +184,26 @@ var list = function list() {
         try {
           for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
             var book = _step2.value;
+            //let A = []
+            var wish = document.createTextNode('Add to Wishlist');
 
             if (meta == "Fantastine") {
-              document.querySelector(".one").appendChild(document.createElement("li"));
+              document.querySelector(".one").appendChild(document.createElement("div")).appendChild(document.createElement("button")).appendChild(wish);
             }
 
             if (meta == "Grozine") {
-              document.querySelector(".two").appendChild(document.createElement("li"));
+              document.querySelector(".two").appendChild(document.createElement("div")).appendChild(document.createElement("button")).appendChild(wish);
             }
 
             if (meta == "Poemos") {
-              document.querySelector(".three").appendChild(document.createElement("li"));
+              document.querySelector(".three").appendChild(document.createElement("div")).appendChild(document.createElement("button")).appendChild(wish);
             }
 
             for (var info in book) {
-              var cellText = document.createTextNode(info + ": " + book[info] + " | ");
+              var cellText = document.createTextNode(info + ": " + book[info] + " | "); //A.push(cellText)
 
               if (meta == "Fantastine") {
-                document.querySelector(".one").appendChild(cellText);
+                document.querySelector('.one').appendChild(cellText);
               }
 
               if (meta == "Grozine") {
@@ -198,6 +230,64 @@ var list = function list() {
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (list);
+
+/***/ }),
+
+/***/ "./src/myWishList.js":
+/*!***************************!*\
+  !*** ./src/myWishList.js ***!
+  \***************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+var myWishList = function myWishList() {
+  var add = function add() {
+    var li = document.createElement("li");
+    document.querySelector(".four").appendChild(li);
+  };
+
+  var selects = document.querySelectorAll('ul div');
+  selects.forEach(function (el) {
+    return el.addEventListener('click', add);
+  }); //document.querySelector('ul div button').addEventListener('click', add);
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (myWishList);
+
+/***/ }),
+
+/***/ "./src/students.js":
+/*!*************************!*\
+  !*** ./src/students.js ***!
+  \*************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+var students = [{
+  name: "Jonas",
+  lname: "Jonaitis"
+}, {
+  name: "Andrius",
+  lname: "Andrenis"
+}, {
+  name: "Aistė",
+  lname: "Ramanauskaitė"
+}, {
+  name: "Justas",
+  lname: "Juozaitis"
+}, {
+  name: "Giedrė",
+  lname: "Roland"
+}];
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (students);
 
 /***/ }),
 
