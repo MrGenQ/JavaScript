@@ -1,6 +1,97 @@
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
+/***/ "./src/addListEl.js":
+/*!**************************!*\
+  !*** ./src/addListEl.js ***!
+  \**************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+var addListEl = function addListEl(meta) {
+  var wish = document.createTextNode('Add to Wishlist');
+
+  if (meta == "Fantastine") {
+    document.querySelector(".one").appendChild(document.createElement("section")).appendChild(document.createElement("button")).appendChild(wish);
+    document.querySelector(".one").appendChild(document.createElement("aside"));
+  }
+
+  if (meta == "Grozine") {
+    document.querySelector(".two").appendChild(document.createElement("section")).appendChild(document.createElement("button")).appendChild(wish);
+    document.querySelector(".two").appendChild(document.createElement("aside"));
+  }
+
+  if (meta == "Poemos") {
+    document.querySelector(".three").appendChild(document.createElement("section")).appendChild(document.createElement("button")).appendChild(wish);
+    document.querySelector(".three").appendChild(document.createElement("aside"));
+  }
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (addListEl);
+
+/***/ }),
+
+/***/ "./src/addToWishlist.js":
+/*!******************************!*\
+  !*** ./src/addToWishlist.js ***!
+  \******************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _data__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./data */ "./src/data.js");
+function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+
+var masData = [];
+
+var _iterator = _createForOfIteratorHelper(_data__WEBPACK_IMPORTED_MODULE_0__["default"]),
+    _step;
+
+try {
+  for (_iterator.s(); !(_step = _iterator.n()).done;) {
+    var theme = _step.value;
+
+    for (var meta in theme) {
+      var _iterator2 = _createForOfIteratorHelper(theme[meta]),
+          _step2;
+
+      try {
+        for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
+          var book = _step2.value;
+
+          for (var info in book) {
+            masData.push(info + ": " + book[info]);
+          }
+        }
+      } catch (err) {
+        _iterator2.e(err);
+      } finally {
+        _iterator2.f();
+      }
+    }
+  }
+} catch (err) {
+  _iterator.e(err);
+} finally {
+  _iterator.f();
+}
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (masData);
+
+/***/ }),
+
 /***/ "./src/app.js":
 /*!********************!*\
   !*** ./src/app.js ***!
@@ -10,16 +101,11 @@
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _list__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./list */ "./src/list.js");
-/* harmony import */ var _demoStorage__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./demoStorage */ "./src/demoStorage.js");
-/* harmony import */ var _students__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./students */ "./src/students.js");
-/* harmony import */ var _myWishList__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./myWishList */ "./src/myWishList.js");
-
-
+/* harmony import */ var _myWishList__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./myWishList */ "./src/myWishList.js");
 
 
 (0,_list__WEBPACK_IMPORTED_MODULE_0__["default"])();
-(0,_myWishList__WEBPACK_IMPORTED_MODULE_3__["default"])();
-(0,_demoStorage__WEBPACK_IMPORTED_MODULE_1__["default"])(_students__WEBPACK_IMPORTED_MODULE_2__["default"]);
+(0,_myWishList__WEBPACK_IMPORTED_MODULE_1__["default"])();
 
 __webpack_require__(/*! bootstrap */ "./node_modules/bootstrap/dist/js/bootstrap.js");
 
@@ -125,30 +211,6 @@ var data = [{
 
 /***/ }),
 
-/***/ "./src/demoStorage.js":
-/*!****************************!*\
-  !*** ./src/demoStorage.js ***!
-  \****************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-var demoStorage = function demoStorage(data) {
-  //const name = "Giedrė";
-  localStorage.setItem('students', JSON.stringify(data)); //localStorage.removeItem('savedName')
-  //console.log(localStorage.getItem('savedName'))
-
-  var students = JSON.parse(localStorage.getItem('students'));
-  console.log(students);
-};
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (demoStorage);
-
-/***/ }),
-
 /***/ "./src/list.js":
 /*!*********************!*\
   !*** ./src/list.js ***!
@@ -161,11 +223,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _data__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./data */ "./src/data.js");
+/* harmony import */ var _addListEl__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./addListEl */ "./src/addListEl.js");
 function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
 
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
 
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
 
 
 
@@ -182,38 +246,41 @@ var list = function list() {
             _step2;
 
         try {
-          for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
+          var _loop = function _loop() {
             var book = _step2.value;
-            //let A = []
-            var wish = document.createTextNode('Add to Wishlist');
-
-            if (meta == "Fantastine") {
-              document.querySelector(".one").appendChild(document.createElement("div")).appendChild(document.createElement("button")).appendChild(wish);
-            }
-
-            if (meta == "Grozine") {
-              document.querySelector(".two").appendChild(document.createElement("div")).appendChild(document.createElement("button")).appendChild(wish);
-            }
-
-            if (meta == "Poemos") {
-              document.querySelector(".three").appendChild(document.createElement("div")).appendChild(document.createElement("button")).appendChild(wish);
-            }
+            (0,_addListEl__WEBPACK_IMPORTED_MODULE_1__["default"])(meta);
+            var cellText = void 0;
 
             for (var info in book) {
-              var cellText = document.createTextNode(info + ": " + book[info] + " | "); //A.push(cellText)
+              cellText = document.createTextNode(info + ": " + book[info]);
 
               if (meta == "Fantastine") {
-                document.querySelector('.one').appendChild(cellText);
+                var select = document.querySelectorAll('.one aside');
+                select.forEach(function (el) {
+                  return el.appendChild(document.createElement("div")).appendChild(cellText);
+                });
               }
 
               if (meta == "Grozine") {
-                document.querySelector(".two").appendChild(cellText);
+                var _select = document.querySelectorAll('.two aside');
+
+                _select.forEach(function (el) {
+                  return el.appendChild(document.createElement("div")).appendChild(cellText);
+                });
               }
 
               if (meta == "Poemos") {
-                document.querySelector(".three").appendChild(cellText);
+                var _select2 = document.querySelectorAll('.three aside');
+
+                _select2.forEach(function (el) {
+                  return el.appendChild(document.createElement("div")).appendChild(cellText);
+                });
               }
             }
+          };
+
+          for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
+            _loop();
           }
         } catch (err) {
           _iterator2.e(err);
@@ -244,50 +311,35 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+/* harmony import */ var _addToWishlist__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./addToWishlist */ "./src/addToWishlist.js");
+
+
 var myWishList = function myWishList() {
-  var add = function add() {
-    var li = document.createElement("li");
-    document.querySelector(".four").appendChild(li);
+  var buttons = document.querySelectorAll("ul section button");
+
+  var _loop = function _loop(i) {
+    if (document.addEventListener) {
+      buttons[i].addEventListener("click", function () {
+        for (var j = 0; j < 5; j++) {
+          var cell = document.createTextNode(_addToWishlist__WEBPACK_IMPORTED_MODULE_0__["default"][i * 5 + j]);
+          document.querySelector(".four").appendChild(document.createElement("div")).appendChild(cell);
+        }
+      });
+    } else {
+      buttons[i].attachEvent("onclick", function () {});
+    }
+
+    ;
   };
 
-  var selects = document.querySelectorAll('ul div');
-  selects.forEach(function (el) {
-    return el.addEventListener('click', add);
-  }); //document.querySelector('ul div button').addEventListener('click', add);
+  for (var i = 0; i < buttons.length; i++) {
+    _loop(i);
+  }
+
+  ;
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (myWishList);
-
-/***/ }),
-
-/***/ "./src/students.js":
-/*!*************************!*\
-  !*** ./src/students.js ***!
-  \*************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-var students = [{
-  name: "Jonas",
-  lname: "Jonaitis"
-}, {
-  name: "Andrius",
-  lname: "Andrenis"
-}, {
-  name: "Aistė",
-  lname: "Ramanauskaitė"
-}, {
-  name: "Justas",
-  lname: "Juozaitis"
-}, {
-  name: "Giedrė",
-  lname: "Roland"
-}];
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (students);
 
 /***/ }),
 

@@ -1,26 +1,30 @@
 import data from "./data"
+import addListEl from "./addListEl";
 const list = () =>{
     for(let theme of data){
         for(let meta in theme){
             for(let book of theme[meta]){
-                    //let A = []
-                    const wish = document.createTextNode('Add to Wishlist')
-                    if(meta == "Fantastine"){document.querySelector(".one").appendChild(document.createElement("div")).appendChild(document.createElement("button")).appendChild(wish)}
-                    if(meta == "Grozine"){document.querySelector(".two").appendChild(document.createElement("div")).appendChild(document.createElement("button")).appendChild(wish)}
-                    if(meta == "Poemos"){document.querySelector(".three").appendChild(document.createElement("div")).appendChild(document.createElement("button")).appendChild(wish)}
-                    for(let info in book) {
-
-                        let cellText = document.createTextNode(info + ": " + book[info] + " | ");
-                        //A.push(cellText)
-                        if(meta == "Fantastine"){document.querySelector('.one').appendChild(cellText)}
-                        if(meta == "Grozine"){document.querySelector(".two").appendChild(cellText)}
-                        if(meta == "Poemos"){document.querySelector(".three").appendChild(cellText)}
-                    }
+                        addListEl(meta)
+                        let cellText
+                        for(let info in book) {
+                            cellText = document.createTextNode(info + ": " + book[info]);
+                            if(meta == "Fantastine"){
+                                let select = document.querySelectorAll('.one aside')
+                                select.forEach(el => el.appendChild(document.createElement("div")).appendChild(cellText))
+                            }
+                            if(meta == "Grozine"){
+                                let select = document.querySelectorAll('.two aside')
+                                select.forEach(el => el.appendChild(document.createElement("div")).appendChild(cellText))
+                            }
+                            if(meta == "Poemos"){
+                                let select = document.querySelectorAll('.three aside')
+                                select.forEach(el => el.appendChild(document.createElement("div")).appendChild(cellText))
+                            }
+                        }  
             }
         }
     
     }
     
 }
-
 export default list
