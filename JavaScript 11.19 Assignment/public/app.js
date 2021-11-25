@@ -104,6 +104,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _myWishList__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./myWishList */ "./src/myWishList.js");
 
 
+
+window.onload = function () {
+  window.localStorage.clear();
+};
+
 (0,_list__WEBPACK_IMPORTED_MODULE_0__["default"])();
 (0,_myWishList__WEBPACK_IMPORTED_MODULE_1__["default"])();
 
@@ -300,6 +305,22 @@ var list = function list() {
 
 /***/ }),
 
+/***/ "./src/localStorage.js":
+/*!*****************************!*\
+  !*** ./src/localStorage.js ***!
+  \*****************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+var localSt = [];
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (localSt);
+
+/***/ }),
+
 /***/ "./src/myWishList.js":
 /*!***************************!*\
   !*** ./src/myWishList.js ***!
@@ -312,6 +333,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _addToWishlist__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./addToWishlist */ "./src/addToWishlist.js");
+/* harmony import */ var _localStorage__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./localStorage */ "./src/localStorage.js");
+/* harmony import */ var _remove__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./remove */ "./src/remove.js");
+
+
 
 
 var myWishList = function myWishList() {
@@ -320,10 +345,20 @@ var myWishList = function myWishList() {
   var _loop = function _loop(i) {
     if (document.addEventListener) {
       buttons[i].addEventListener("click", function () {
+        var con = [];
+        var wish = document.createTextNode('Remove');
+        document.querySelector(".four").appendChild(document.createElement("aside")).appendChild(document.createElement("button")).appendChild(wish);
+        (0,_remove__WEBPACK_IMPORTED_MODULE_2__["default"])();
+
         for (var j = 0; j < 5; j++) {
+          con.push(_addToWishlist__WEBPACK_IMPORTED_MODULE_0__["default"][i * 5 + j]);
+          _localStorage__WEBPACK_IMPORTED_MODULE_1__["default"].push(con);
           var cell = document.createTextNode(_addToWishlist__WEBPACK_IMPORTED_MODULE_0__["default"][i * 5 + j]);
           document.querySelector(".four").appendChild(document.createElement("div")).appendChild(cell);
         }
+
+        localStorage.setItem('wishlist', _localStorage__WEBPACK_IMPORTED_MODULE_1__["default"]);
+        console.log(con);
       });
     } else {
       buttons[i].attachEvent("onclick", function () {});
@@ -340,6 +375,52 @@ var myWishList = function myWishList() {
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (myWishList);
+
+/***/ }),
+
+/***/ "./src/remove.js":
+/*!***********************!*\
+  !*** ./src/remove.js ***!
+  \***********************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _addToWishlist__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./addToWishlist */ "./src/addToWishlist.js");
+/* harmony import */ var _localStorage__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./localStorage */ "./src/localStorage.js");
+
+
+
+var remove = function remove() {
+  var buttons = document.querySelectorAll("ul aside button");
+
+  for (var i = 0; i < buttons.length; i++) {
+    if (document.addEventListener) {
+      buttons[i].addEventListener("click", function () {
+        var top = document.querySelector(".four");
+
+        for (var j = 0; j < 5; j++) {
+          var nested = document.querySelector(".four div"); // Throws Uncaught TypeError
+
+          top.removeChild(nested);
+        }
+
+        localStorage.clear();
+      });
+    } else {
+      buttons[i].attachEvent("onclick", function () {});
+    }
+
+    ;
+  }
+
+  ;
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (remove);
 
 /***/ }),
 
