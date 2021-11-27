@@ -1,6 +1,30 @@
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
+/***/ "./src/ajaxService.js":
+/*!****************************!*\
+  !*** ./src/ajaxService.js ***!
+  \****************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+var ajaxService = function ajaxService(term, searchEngine) {
+  // ajax function for getting data from omdbapi.com
+  var url = "https://www.omdbapi.com/";
+  var key = "c9d4de65";
+  return fetch("".concat(url).concat(searchEngine).concat(term, "&apikey=").concat(key)).then(function (response) {
+    return response.json();
+  });
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ajaxService);
+
+/***/ }),
+
 /***/ "./src/app.js":
 /*!********************!*\
   !*** ./src/app.js ***!
@@ -10,10 +34,92 @@
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _renderForm__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./renderForm */ "./src/renderForm.js");
+/* harmony import */ var _searchCode__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./searchCode */ "./src/searchCode.js");
+//main js function
+
 
 (0,_renderForm__WEBPACK_IMPORTED_MODULE_0__["default"])();
+(0,_searchCode__WEBPACK_IMPORTED_MODULE_1__["default"])();
 
 __webpack_require__(/*! bootstrap */ "./node_modules/bootstrap/dist/js/bootstrap.js");
+
+/***/ }),
+
+/***/ "./src/clear.js":
+/*!**********************!*\
+  !*** ./src/clear.js ***!
+  \**********************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+var clear = function clear() {
+  //function to clear movie search results
+  var clearing = document.createElement('button');
+  clearing.innerHTML = "Reset";
+  clearing.className = "clear";
+  document.querySelector(".forms").appendChild(clearing);
+  document.querySelector(".clear").addEventListener('click', function () {
+    document.querySelector(".list-group").innerHTML = "";
+    document.querySelector(".movie").value = "";
+    document.querySelector(".imdb_id").value = "";
+  });
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (clear);
+
+/***/ }),
+
+/***/ "./src/createCustom.js":
+/*!*****************************!*\
+  !*** ./src/createCustom.js ***!
+  \*****************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+var createCustom = function createCustom(txt, response) {
+  //function for Text creation upon completing search request
+  var ele = document.createElement('div');
+  ele.innerHTML = txt;
+  ele.innerHTML += document.querySelector('.result').value = response;
+  ele.style.fontSize = "30px";
+  document.querySelector(".result").appendChild(ele);
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (createCustom);
+
+/***/ }),
+
+/***/ "./src/createImage.js":
+/*!****************************!*\
+  !*** ./src/createImage.js ***!
+  \****************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+var createImage = function createImage(url) {
+  //function for image creation upon completing search request
+  var img = document.createElement("img");
+  img.setAttribute('src', url);
+  img.setAttribute('alt', 'poster');
+  img.setAttribute('width', 350);
+  img.setAttribute('height', 500);
+  img.setAttribute('onerror', "src='https://www.csaff.org/wp-content/uploads/csaff-no-poster.jpg'");
+  document.querySelector('.result').appendChild(img);
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (createImage);
 
 /***/ }),
 
@@ -29,7 +135,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 var form = function form() {
-  return "\n    <div class=\"row\">\n        <div class=\"col-lg-6\">\n            <input type=\"text\" class=\"form-control movie\" placeholder=\"Movie\" aria-label=\"Movie\">\n        </div>\n        <div class=\"col-lg-4\">\n            <input type=\"number\"  min=\"1\" max=\"10\" step=\"0.1\" list=tickmarks class=\"form-control rating\" placeholder=\"Rating\">\n            <datalist id=\"tickmarks\">\n            <option value=\"1\" label=\"1\">1</option>\n            <option value=\"2\" label=\"2\">2</option>\n            <option value=\"3\" label=\"3\">3</option>\n            <option value=\"4\" label=\"4\">4</option>\n            <option value=\"5\" label=\"5\">5</option>\n            <option value=\"6\" label=\"6\">6</option>\n            <option value=\"7\" label=\"7\">7</option>\n            <option value=\"8\" label=\"8\">8</option>\n            <option value=\"9\" label=\"9\">9</option>\n            <option value=\"10\" label=\"10\">10</option>\n        </datalist>\n        </div class=\"col-lg-2\">\n        <button type=\"submit\" class=\"btn btn-primary mb-2 img\"><i class=\"fas fa-search\"></i></button>\n        \n    </div>\n    ";
+  //funtion of forms innerHTML
+  return "\n    <div class=\"row\">\n        <div class=\"col-6\">\n            <input type=\"text\" class=\"form-control movie\" placeholder=\"Movie Title\" aria-label=\"Movie\">\n        </div>\n        <div class=\"col-4\">\n        <input type=\"text\" class=\"form-control imdb_id\" placeholder=\"IMDB ID\" aria-label=\"ID\">\n        </div>\n        <div class=\"col-2\">\n        <button type=\"submit\" class=\"btn btn-primary img\"><i class=\"fas fa-search\"></i></button>\n        \n    </div>\n    ";
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (form);
@@ -48,21 +155,82 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _form__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./form */ "./src/form.js");
+/* harmony import */ var _clear__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./clear */ "./src/clear.js");
+
 
 
 var renderForm = function renderForm() {
+  //function to create form with few elements
   var formElement = document.createElement('form');
   formElement.className = "form-inline";
-  formElement.innerHTML = (0,_form__WEBPACK_IMPORTED_MODULE_0__["default"])(); //const el = document.createElement("div")
-  //el.innerHTML = '<i class="fas fa-search"></i>'
-  //document.querySelector(".img").appendChild(el)
-  //console.log(el)
-
+  formElement.innerHTML = (0,_form__WEBPACK_IMPORTED_MODULE_0__["default"])();
   document.querySelector("main .card-body").appendChild(formElement);
-  console.log(document.querySelector('.rating').value);
+  (0,_clear__WEBPACK_IMPORTED_MODULE_1__["default"])();
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (renderForm);
+
+/***/ }),
+
+/***/ "./src/searchCode.js":
+/*!***************************!*\
+  !*** ./src/searchCode.js ***!
+  \***************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _ajaxService__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ajaxService */ "./src/ajaxService.js");
+/* harmony import */ var _createCustom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./createCustom */ "./src/createCustom.js");
+/* harmony import */ var _createImage__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./createImage */ "./src/createImage.js");
+
+
+
+
+var searchCode = function searchCode() {
+  //function for getting specified tada using text submit
+  document.querySelector('form').addEventListener('submit', function (event) {
+    event.preventDefault();
+    var searchEngine;
+    var search;
+
+    if (document.querySelector('.movie').value.length !== 0) {
+      searchEngine = '?t=';
+      search = document.querySelector('.movie').value;
+    }
+
+    if (document.querySelector('.imdb_id').value.length !== 0) {
+      if (document.querySelector('.movie').value.length > 0) {
+        window.alert("IMDB ID field has priority over Movie title");
+      }
+
+      document.querySelector(".movie").clear;
+      searchEngine = '?i=';
+      search = document.querySelector('.imdb_id').value;
+    }
+
+    var searchResponse;
+    (0,_ajaxService__WEBPACK_IMPORTED_MODULE_0__["default"])(search, searchEngine).then(function (result) {
+      return searchResponse = result;
+    }).then(function () {
+      return console.log(searchResponse);
+    }).then(function () {
+      var Element = document.createElement('div');
+      Element.className = "result";
+      document.querySelector(".list-group").appendChild(Element); //console.log(document.querySelector(".list-group"))
+    }).then(function () {
+      (0,_createCustom__WEBPACK_IMPORTED_MODULE_1__["default"])('Movie Title: ', searchResponse.Title);
+      (0,_createCustom__WEBPACK_IMPORTED_MODULE_1__["default"])('IMDB ID: ', searchResponse.imdbID);
+      (0,_createCustom__WEBPACK_IMPORTED_MODULE_1__["default"])('IMDB Rating: ', searchResponse.imdbRating);
+      (0,_createImage__WEBPACK_IMPORTED_MODULE_2__["default"])(searchResponse.Poster);
+    });
+  });
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (searchCode);
 
 /***/ }),
 

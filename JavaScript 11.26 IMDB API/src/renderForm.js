@@ -1,13 +1,13 @@
 import form from "./form";
-const renderForm = () =>{
+import clear from "./clear";
+
+const renderForm = () =>{       //function to create form with few elements
     let formElement = document.createElement('form');
     formElement.className = "form-inline";
     formElement.innerHTML = form();
-    //const el = document.createElement("div")
-    //el.innerHTML = '<i class="fas fa-search"></i>'
-    //document.querySelector(".img").appendChild(el)
-    //console.log(el)
     document.querySelector("main .card-body").appendChild(formElement);
-    console.log(document.querySelector('.rating').value)
+    clear()
+    
+
 }
 export default renderForm
