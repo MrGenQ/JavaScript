@@ -11,7 +11,7 @@ const pushingToStorage = () =>{ // function for adding person's data and placing
         localStorage.setItem("name", user.name)
         localStorage.setItem("lname", user.lname)
         localStorage.setItem("email", user.email)
-        console.log(localStorage)
+        storage.prototype.showConsole = console.log(localStorage)
         CreateListEl()
         clearingInputValue()
     })
