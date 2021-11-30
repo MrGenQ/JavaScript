@@ -10,20 +10,41 @@
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _renderForm__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./renderForm */ "./src/renderForm.js");
-/* harmony import */ var _storage__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./storage */ "./src/storage.js");
-/* harmony import */ var _pushingToStorage__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./pushingToStorage */ "./src/pushingToStorage.js");
+/* harmony import */ var _pushingToStorage__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./pushingToStorage */ "./src/pushingToStorage.js");
 
 
 
-
-window.onload = function () {
+window.onload = function () //clears localStorage upon opening your browser
+{
   window.localStorage.clear();
 };
 
 (0,_renderForm__WEBPACK_IMPORTED_MODULE_0__["default"])();
-(0,_pushingToStorage__WEBPACK_IMPORTED_MODULE_2__["default"])();
+(0,_pushingToStorage__WEBPACK_IMPORTED_MODULE_1__["default"])();
 
 __webpack_require__(/*! bootstrap */ "./node_modules/bootstrap/dist/js/bootstrap.js");
+
+/***/ }),
+
+/***/ "./src/clearingInputValue.js":
+/*!***********************************!*\
+  !*** ./src/clearingInputValue.js ***!
+  \***********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+var clearingInputValue = function clearingInputValue() {
+  //clearing values of input text boxes upon pressing submit
+  document.querySelector(".name").value = "";
+  document.querySelector(".lname").value = "";
+  document.querySelector(".email").value = "";
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (clearingInputValue);
 
 /***/ }),
 
@@ -39,8 +60,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 var CreateListEl = function CreateListEl() {
+  //creates li element with localStorages information
   var ele = document.createElement('li');
-  ele.innerText = JSON.stringify(localStorage);
+  ele.innerText = localStorage.getItem('name') + " " + localStorage.getItem('lname') + " " + localStorage.getItem('email');
   document.querySelector('ul').appendChild(ele);
 };
 
@@ -80,25 +102,25 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _storage__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./storage */ "./src/storage.js");
 /* harmony import */ var _createListEl__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./createListEl */ "./src/createListEl.js");
+/* harmony import */ var _clearingInputValue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./clearingInputValue */ "./src/clearingInputValue.js");
+
 
 
 
 var pushingToStorage = function pushingToStorage() {
-  //var localArray = []
+  // function for adding person's data and placing it in li element
   document.querySelector('form').addEventListener('submit', function (event) {
     event.preventDefault();
     var name = document.querySelector(".name").value;
     var lname = document.querySelector(".lname").value;
     var email = document.querySelector(".email").value;
-    var user = new _storage__WEBPACK_IMPORTED_MODULE_0__["default"](name, lname, email); //for(let i = 0; i < localArray.length; i++) {
-
+    var user = new _storage__WEBPACK_IMPORTED_MODULE_0__["default"](name, lname, email);
     localStorage.setItem("name", user.name);
     localStorage.setItem("lname", user.lname);
-    localStorage.setItem("email", user.email); //}
-    //console.log(localArray[0])
-
+    localStorage.setItem("email", user.email);
     console.log(localStorage);
     (0,_createListEl__WEBPACK_IMPORTED_MODULE_1__["default"])();
+    (0,_clearingInputValue__WEBPACK_IMPORTED_MODULE_2__["default"])();
   });
 };
 
@@ -145,7 +167,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var storage = function storage(name, lname, email) {
+var storage = //class object for name, last name and email
+function storage(name, lname, email) {
   _classCallCheck(this, storage);
 
   this.name = name;

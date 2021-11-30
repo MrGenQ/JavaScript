@@ -10003,26 +10003,29 @@ h3 {
     border-color: #dee2e6;
   }
 }
-.alert {
-  padding: 15px;
-  background-color: red;
-  color: black;
-  margin-bottom: 15px;
+* {
+  margin: 0 auto;
 }
 
-.clear {
-  border-radius: 0.25rem;
-  color: #fff;
+.row {
+  padding-top: 10%;
+}
+
+input {
   background-color: #007bff;
   border-color: #007bff;
-  width: 10vh;
-  height: 5vh;
+  line-height: 2;
+  border-radius: 5px;
 }
 
-.forms {
-  padding: 8%;
+::-moz-placeholder {
+  color: #ffffff;
 }
 
-.list-group {
-  padding: 8%;
+:-ms-input-placeholder {
+  color: #ffffff;
+}
+
+::placeholder {
+  color: #ffffff;
 }

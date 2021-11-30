@@ -1,7 +1,6 @@
 import renderForm from "./renderForm";
-import storage from "./storage";
 import pushingToStorage from "./pushingToStorage";
-window.onload = function()
+window.onload = function()  //clears localStorage upon opening your browser
 {
     window.localStorage.clear();
 }
